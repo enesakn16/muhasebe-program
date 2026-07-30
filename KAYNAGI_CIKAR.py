@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import base64
 import io
+import shutil
 import tarfile
 from pathlib import Path
 
@@ -29,6 +30,10 @@ def main() -> None:
 
     with tarfile.open(fileobj=io.BytesIO(archive_bytes), mode="r:xz") as archive:
         safe_extract(archive, ROOT)
+
+    shutil.rmtree(PARTS_DIR, ignore_errors=True)
+    bootstrap_workflow = ROOT / ".github" / "workflows" / "bootstrap-source.yml"
+    bootstrap_workflow.unlink(missing_ok=True)
 
     print("Türkmopet Muhasebe Programı v1.4.1 kaynak kodu repository köküne çıkarıldı.")
     print("Son adım: git add -A && git commit -m \"feat: add v1.4.1 source\" && git push")
