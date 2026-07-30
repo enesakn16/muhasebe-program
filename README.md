@@ -1,32 +1,19 @@
-# Türkmopet Bulut Cari, Ürün ve Satış Takibi — v1.4.1
+# Türkmopet Bulut Cari, Ürün ve Satış Takibi — v1.4.2
 
 Windows masaüstü uygulaması. İnegöl ve Yenişehir bilgisayarları aynı Supabase bulutuna bağlanır.
 
-## Kaynak paketini açma
+## v1.4.2 hızlı müşteri satışı
 
-Bu repository, güvenlik kontrolünden geçirilmiş **v1.4.1 tam kaynak paketini** içerir. GitHub bağlantısındaki otomatik iş akışı kaynak klasörlerini açmadığı için paket `.bootstrap` altında sıkıştırılmış olarak saklanmaktadır.
-
-Windows'ta repository'yi indirdikten veya klonladıktan sonra:
-
-```bat
-KAYNAGI_CIKAR.bat
-```
-
-Dosyasına çift tıkla. Python 3.12 ile kaynak dosyaları repository köküne çıkarılır. Komut satırından çalıştırmak için:
-
-```bat
-py -3.12 KAYNAGI_CIKAR.py
-```
-
-Ardından normal Git işlemleriyle çıkarılan dosyaları yazabilirsin:
-
-```bat
-git add -A
-git commit -m "feat: add v1.4.1 source"
-git push
-```
-
-> Gerçek `.env` dosyası, Supabase anahtarı, kullanıcı şifresi, yedek ZIP'leri ve geçici çalışma dosyaları repository'ye eklenmemiştir.
+- Satış ekranı varsayılan olarak **Perakende** seçili açılır.
+- Ürün sepete eklenirken toptan/perakende sorusu gösterilmez.
+- Ürün adı yanındaki `...` düğmesi ürün listesini açar.
+- `...` kullanılmadan ürün adı, miktar ve fiyat yazılırsa manuel satış satırı oluşturulur.
+- Barkod okutulan ürün otomatik aranır; bulunmazsa manuel girişe devam edilir.
+- Sol alttaki **Toptan / Perakende** düğmeleriyle sepet fiyat türü değiştirilebilir.
+- Perakende manuel girişte toptan fiyatı otomatik %10 aşağı hesaplanır.
+- Doğrudan toptan girilen satır perakendeye karıştırılmaz.
+- Satış tablosu Barkod, Ürün Adı, Miktar, Birim, Fiyat ve Tutar sütunlarına sadeleştirildi.
+- Hazır güncelleme paketi: `releases/turkmopet_borc_takip_v1.4.2_hizli_satis_hotfix.zip`
 
 ## Temel yapı
 
@@ -47,47 +34,17 @@ git push
 - Kullanıcı adı/rolü ayrı profil kartında gösterilir.
 - Menü öğelerine ikon eklendi.
 - Şimdi Yenile ve Oturumu Kapat, sayfa menüsünden ayrılarak sabit alt aksiyonlara dönüştürüldü.
-- Bu sürüm veritabanı değişikliği içermez; v1.4.0 SQL'i daha önce çalıştıysa tekrar SQL çalıştırılmaz.
 
 ## v1.4.0 özellikleri
 
-### Uyarı Merkezi
-
-- Gecikmiş tedarikçi vadeleri
-- Bugünkü ödemeler
-- Önümüzdeki 7 gün içindeki vadeler
-- Yıllık bağlantı taksitleri
-- Gecikmiş/yaklaşan müşteri tahsilatları
-- Program açılışında tek seferlik özet
-
-### Cari ekstre ve mutabakat PDF
-
-- Müşteri ve tedarikçi için tarih aralıklı ekstre
-- Dönem başı/dönem sonu bakiyesi
-- İşlem, vade, belge ve açıklama ayrıntıları
-- Müşteri satışlarında ürün özeti
-- Mutabakat metni ve imza bölümü
-
-### Kullanıcı ve yetkiler
-
-- Yönetici
-- Muhasebe
-- Veri giriş personeli
-- Sadece görüntüleme
-- Özel yetki
-
-Yetkiler tedarikçi, müşteri, ürün, bağlantı, silme, rapor, yedek ve kullanıcı yönetimi olarak ayrı verilir. Denetim geçmişinde işlemi yapan kullanıcı ve bilgisayar görünür.
-
-### Yedekleme
-
-- Manuel tam ZIP yedeği
-- Haftalık otomatik yedek
-- Bulut tabloları ve belgeler
-- ID bazlı birleştirerek geri yükleme
+- Uyarı Merkezi
+- Cari ekstre ve mutabakat PDF
+- Kullanıcı ve yetki sistemi
+- Manuel/haftalık yedekleme ve geri yükleme
 
 ## Çalıştırma
 
-Kaynak paketi çıkarıldıktan sonra Python 3.12 kurulu Windows bilgisayarda:
+Python 3.12 kurulu Windows bilgisayarda:
 
 ```bat
 run.bat
@@ -97,4 +54,4 @@ run.bat
 
 ## Güvenlik
 
-Masaüstü uygulamasına yalnız Supabase publishable/anon key yazılır. Service-role veya secret key kesinlikle kullanılmaz. Gerçek yapılandırma için kaynak paketteki `.env.example` dosyası kopyalanarak `.env` oluşturulmalıdır.
+Gerçek `.env`, Supabase anahtarları, kullanıcı şifreleri ve yedek dosyaları repository'ye eklenmez. Masaüstü uygulamasında yalnız publishable/anon key kullanılır.
