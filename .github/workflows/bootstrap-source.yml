@@ -2,15 +2,15 @@ name: Bootstrap source
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/bootstrap-source.yml"
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
 
 jobs:
   bootstrap:
+    if: github.event_name == 'workflow_dispatch' || github.event.issue.title == 'bootstrap-source-v1.4.1'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
