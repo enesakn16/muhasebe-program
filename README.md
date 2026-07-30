@@ -2,6 +2,32 @@
 
 Windows masaüstü uygulaması. İnegöl ve Yenişehir bilgisayarları aynı Supabase bulutuna bağlanır.
 
+## Kaynak paketini açma
+
+Bu repository, güvenlik kontrolünden geçirilmiş **v1.4.1 tam kaynak paketini** içerir. GitHub bağlantısındaki otomatik iş akışı kaynak klasörlerini açmadığı için paket `.bootstrap` altında sıkıştırılmış olarak saklanmaktadır.
+
+Windows'ta repository'yi indirdikten veya klonladıktan sonra:
+
+```bat
+KAYNAGI_CIKAR.bat
+```
+
+Dosyasına çift tıkla. Python 3.12 ile kaynak dosyaları repository köküne çıkarılır. Komut satırından çalıştırmak için:
+
+```bat
+py -3.12 KAYNAGI_CIKAR.py
+```
+
+Ardından normal Git işlemleriyle çıkarılan dosyaları yazabilirsin:
+
+```bat
+git add -A
+git commit -m "feat: add v1.4.1 source"
+git push
+```
+
+> Gerçek `.env` dosyası, Supabase anahtarı, kullanıcı şifresi, yedek ZIP'leri ve geçici çalışma dosyaları repository'ye eklenmemiştir.
+
 ## Temel yapı
 
 - Tedarikçiler ve tedarikçi borçları iki şubede ortaktır.
@@ -61,7 +87,7 @@ Yetkiler tedarikçi, müşteri, ürün, bağlantı, silme, rapor, yedek ve kulla
 
 ## Çalıştırma
 
-Python 3.12 kurulu Windows bilgisayarda:
+Kaynak paketi çıkarıldıktan sonra Python 3.12 kurulu Windows bilgisayarda:
 
 ```bat
 run.bat
@@ -69,10 +95,6 @@ run.bat
 
 İlk açılışta gerekli paketler kurulur. `.env` dosyası `run.bat` ile aynı klasörde olmalıdır.
 
-## Güncelleme
-
-Mevcut v1.3.1 kullanıcısı `GUNCELLEME_V1.4.0_ADIMLARI.txt` dosyasındaki sırayı uygulamalıdır.
-
 ## Güvenlik
 
-Masaüstü uygulamasına yalnız Supabase publishable/anon key yazılır. Service-role veya secret key kesinlikle kullanılmaz. Yetkiler hem uygulama arayüzünde hem Supabase RLS seviyesinde kontrol edilir.
+Masaüstü uygulamasına yalnız Supabase publishable/anon key yazılır. Service-role veya secret key kesinlikle kullanılmaz. Gerçek yapılandırma için kaynak paketteki `.env.example` dosyası kopyalanarak `.env` oluşturulmalıdır.
