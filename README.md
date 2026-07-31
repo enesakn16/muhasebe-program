@@ -15,6 +15,25 @@ Windows masaüstü uygulaması. İnegöl ve Yenişehir bilgisayarları aynı Sup
 - Satış tablosu Barkod, Ürün Adı, Miktar, Birim, Fiyat ve Tutar sütunlarına sadeleştirildi.
 - Hazır güncelleme paketi: `releases/turkmopet_borc_takip_v1.4.2_hizli_satis_hotfix.zip`
 
+## Sürüm paketini doğrulama
+
+Dağıtım ZIP'i kurulmadan veya paylaşılmadan önce doğrulanmalıdır:
+
+```bat
+py -3.12 tools\verify_release.py releases\turkmopet_borc_takip_v1.4.2_hizli_satis_hotfix.zip --version-file VERSION.txt
+```
+
+Doğrulayıcı şu risklerde işlemi hatayla durdurur:
+
+- ZIP bozulması veya CRC hatası
+- Dizin dışına yazmaya çalışan `../` veya mutlak yollar
+- Sembolik bağlantılar
+- `.env`, `secrets.json` ve service-role anahtarı gibi hassas dosyalar
+- Eksik ya da uyumsuz `VERSION.txt`
+- 250 MB sınırını aşan açılmış paket boyutu
+
+Aynı kontroller her pull request'te GitHub Actions tarafından otomatik çalıştırılır.
+
 ## Temel yapı
 
 - Tedarikçiler ve tedarikçi borçları iki şubede ortaktır.
