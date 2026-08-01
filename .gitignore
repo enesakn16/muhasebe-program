@@ -1,0 +1,51 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Local data and backups
+*.db
+*.sqlite
+*.sqlite3
+backups/
+yedekler/
+*.bak
+*.backup
+
+# Build and packaging output
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+~$*
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# User-generated documents and exports
+exports/
+reports/
+raporlar/
