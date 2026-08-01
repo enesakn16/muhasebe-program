@@ -1,0 +1,31 @@
+name: Release safety
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run verifier tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate current release archive
+        run: >-
+          python tools/verify_release.py
+          releases/turkmopet_borc_takip_v1.4.2_hizli_satis_hotfix.zip
+          --version-file VERSION.txt
