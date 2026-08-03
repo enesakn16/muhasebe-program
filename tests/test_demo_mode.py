@@ -1,13 +1,15 @@
 import ast
 import importlib.util
 from pathlib import Path
+import sys
 import unittest
 
 
 MODULE_PATH = Path(__file__).resolve().parents[1] / "demo" / "demo_app.py"
 SPEC = importlib.util.spec_from_file_location("demo_app", MODULE_PATH)
-DEMO = importlib.util.module_from_spec(SPEC)
 assert SPEC and SPEC.loader
+DEMO = importlib.util.module_from_spec(SPEC)
+sys.modules[SPEC.name] = DEMO
 SPEC.loader.exec_module(DEMO)
 
 
